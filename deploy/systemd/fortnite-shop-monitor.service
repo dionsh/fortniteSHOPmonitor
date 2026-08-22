@@ -1,0 +1,40 @@
+# Linux / Oracle Cloud Always-Free VM service unit.
+#
+#   sudo cp deploy/systemd/fortnite-shop-monitor.service /etc/systemd/system/
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now fortnite-shop-monitor
+#   journalctl -u fortnite-shop-monitor -f
+#
+# Edit User= and the two paths below to match your machine.
+
+[Unit]
+Description=Fortnite Item Shop Monitor
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/home/ubuntu/fortnite_shop
+ExecStart=/home/ubuntu/fortnite_shop/.venv/bin/python run.py
+
+# Always come back, even after a crash or an OOM kill.
+Restart=always
+RestartSec=15
+
+# Do not let a crash loop hammer the API.
+StartLimitIntervalSec=300
+StartLimitBurst=10
+
+StandardOutput=journal
+StandardError=journal
+
+# Basic hardening - the app only needs to read its own directory.
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=read-only
+ReadWritePaths=/home/ubuntu/fortnite_shop/state /home/ubuntu/fortnite_shop/logs /home/ubuntu/fortnite_shop/cache
+
+[Install]
+WantedBy=multi-user.target

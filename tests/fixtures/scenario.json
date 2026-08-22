@@ -1,0 +1,769 @@
+[
+  {
+    "_label": "baseline - none of your items",
+    "hash": "mock-h0",
+    "date": "2026-08-22T00:00:00Z",
+    "vbuckIcon": "https://fortnite-api.com/images/vbuck.png",
+    "entries": [
+      {
+        "regularPrice": 1200,
+        "finalPrice": 1200,
+        "devName": "[VIRTUAL] Some Other Skin",
+        "offerId": "offer-CID_999_Filler",
+        "inDate": "2026-08-22T00:00:00Z",
+        "outDate": "2026-08-30T23:59:59Z",
+        "giftable": true,
+        "refundable": true,
+        "sortPriority": 0,
+        "layout": {
+          "id": "Feat",
+          "name": "Featured",
+          "category": "Featured"
+        },
+        "bundle": null,
+        "brItems": [
+          {
+            "id": "CID_999_Filler",
+            "name": "Some Other Skin",
+            "type": {
+              "value": "outfit",
+              "displayValue": "Outfit",
+              "backendValue": "AthenaOutfit"
+            },
+            "rarity": {
+              "value": "uncommon",
+              "displayValue": "Uncommon",
+              "backendValue": "EFortRarity::Uncommon"
+            },
+            "images": {
+              "icon": "https://fortnite-api.com/images/cosmetics/br/cid_999_filler/icon.png",
+              "featured": "https://fortnite-api.com/images/cosmetics/br/cid_999_filler/featured.png"
+            }
+          }
+        ]
+      },
+      {
+        "regularPrice": 1200,
+        "finalPrice": 1200,
+        "devName": "[VIRTUAL] Some Other Emote",
+        "offerId": "offer-EID_Filler",
+        "inDate": "2026-08-22T00:00:00Z",
+        "outDate": "2026-08-30T23:59:59Z",
+        "giftable": true,
+        "refundable": true,
+        "sortPriority": 0,
+        "layout": {
+          "id": "Feat",
+          "name": "Featured",
+          "category": "Featured"
+        },
+        "bundle": null,
+        "brItems": [
+          {
+            "id": "EID_Filler",
+            "name": "Some Other Emote",
+            "type": {
+              "value": "emote",
+              "displayValue": "Emote",
+              "backendValue": "AthenaEmote"
+            },
+            "rarity": {
+              "value": "rare",
+              "displayValue": "Rare",
+              "backendValue": "EFortRarity::Rare"
+            },
+            "images": {
+              "icon": "https://fortnite-api.com/images/cosmetics/br/eid_filler/icon.png",
+              "featured": "https://fortnite-api.com/images/cosmetics/br/eid_filler/featured.png"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_label": "Renegade Raider APPEARS -> expect alert",
+    "hash": "mock-h1",
+    "date": "2026-08-22T00:00:00Z",
+    "vbuckIcon": "https://fortnite-api.com/images/vbuck.png",
+    "entries": [
+      {
+        "regularPrice": 1200,
+        "finalPrice": 1200,
+        "devName": "[VIRTUAL] Some Other Skin",
+        "offerId": "offer-CID_999_Filler",
+        "inDate": "2026-08-22T00:00:00Z",
+        "outDate": "2026-08-30T23:59:59Z",
+        "giftable": true,
+        "refundable": true,
+        "sortPriority": 0,
+        "layout": {
+          "id": "Feat",
+          "name": "Featured",
+          "category": "Featured"
+        },
+        "bundle": null,
+        "brItems": [
+          {
+            "id": "CID_999_Filler",
+            "name": "Some Other Skin",
+            "type": {
+              "value": "outfit",
+              "displayValue": "Outfit",
+              "backendValue": "AthenaOutfit"
+            },
+            "rarity": {
+              "value": "uncommon",
+              "displayValue": "Uncommon",
+              "backendValue": "EFortRarity::Uncommon"
+            },
+            "images": {
+              "icon": "https://fortnite-api.com/images/cosmetics/br/cid_999_filler/icon.png",
+              "featured": "https://fortnite-api.com/images/cosmetics/br/cid_999_filler/featured.png"
+            }
+          }
+        ]
+      },
+      {
+        "regularPrice": 1200,
+        "finalPrice": 1200,
+        "devName": "[VIRTUAL] Some Other Emote",
+        "offerId": "offer-EID_Filler",
+        "inDate": "2026-08-22T00:00:00Z",
+        "outDate": "2026-08-30T23:59:59Z",
+        "giftable": true,
+        "refundable": true,
+        "sortPriority": 0,
+        "layout": {
+          "id": "Feat",
+          "name": "Featured",
+          "category": "Featured"
+        },
+        "bundle": null,
+        "brItems": [
+          {
+            "id": "EID_Filler",
+            "name": "Some Other Emote",
+            "type": {
+              "value": "emote",
+              "displayValue": "Emote",
+              "backendValue": "AthenaEmote"
+            },
+            "rarity": {
+              "value": "rare",
+              "displayValue": "Rare",
+              "backendValue": "EFortRarity::Rare"
+            },
+            "images": {
+              "icon": "https://fortnite-api.com/images/cosmetics/br/eid_filler/icon.png",
+              "featured": "https://fortnite-api.com/images/cosmetics/br/eid_filler/featured.png"
+            }
+          }
+        ]
+      },
+      {
+        "regularPrice": 1200,
+        "finalPrice": 1200,
+        "devName": "[VIRTUAL] Renegade Raider",
+        "offerId": "offer-CID_028_Athena_Commando_F",
+        "inDate": "2026-08-22T00:00:00Z",
+        "outDate": "2026-08-30T23:59:59Z",
+        "giftable": true,
+        "refundable": true,
+        "sortPriority": 0,
+        "layout": {
+          "id": "Feat",
+          "name": "Featured",
+          "category": "Featured"
+        },
+        "bundle": null,
+        "brItems": [
+          {
+            "id": "CID_028_Athena_Commando_F",
+            "name": "Renegade Raider",
+            "type": {
+              "value": "outfit",
+              "displayValue": "Outfit",
+              "backendValue": "AthenaOutfit"
+            },
+            "rarity": {
+              "value": "rare",
+              "displayValue": "Rare",
+              "backendValue": "EFortRarity::Rare"
+            },
+            "images": {
+              "icon": "https://fortnite-api.com/images/cosmetics/br/cid_028_athena_commando_f/icon.png",
+              "featured": "https://fortnite-api.com/images/cosmetics/br/cid_028_athena_commando_f/featured.png"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_label": "still there -> expect SILENCE",
+    "hash": "mock-h1",
+    "date": "2026-08-22T00:00:00Z",
+    "vbuckIcon": "https://fortnite-api.com/images/vbuck.png",
+    "entries": [
+      {
+        "regularPrice": 1200,
+        "finalPrice": 1200,
+        "devName": "[VIRTUAL] Some Other Skin",
+        "offerId": "offer-CID_999_Filler",
+        "inDate": "2026-08-22T00:00:00Z",
+        "outDate": "2026-08-30T23:59:59Z",
+        "giftable": true,
+        "refundable": true,
+        "sortPriority": 0,
+        "layout": {
+          "id": "Feat",
+          "name": "Featured",
+          "category": "Featured"
+        },
+        "bundle": null,
+        "brItems": [
+          {
+            "id": "CID_999_Filler",
+            "name": "Some Other Skin",
+            "type": {
+              "value": "outfit",
+              "displayValue": "Outfit",
+              "backendValue": "AthenaOutfit"
+            },
+            "rarity": {
+              "value": "uncommon",
+              "displayValue": "Uncommon",
+              "backendValue": "EFortRarity::Uncommon"
+            },
+            "images": {
+              "icon": "https://fortnite-api.com/images/cosmetics/br/cid_999_filler/icon.png",
+              "featured": "https://fortnite-api.com/images/cosmetics/br/cid_999_filler/featured.png"
+            }
+          }
+        ]
+      },
+      {
+        "regularPrice": 1200,
+        "finalPrice": 1200,
+        "devName": "[VIRTUAL] Some Other Emote",
+        "offerId": "offer-EID_Filler",
+        "inDate": "2026-08-22T00:00:00Z",
+        "outDate": "2026-08-30T23:59:59Z",
+        "giftable": true,
+        "refundable": true,
+        "sortPriority": 0,
+        "layout": {
+          "id": "Feat",
+          "name": "Featured",
+          "category": "Featured"
+        },
+        "bundle": null,
+        "brItems": [
+          {
+            "id": "EID_Filler",
+            "name": "Some Other Emote",
+            "type": {
+              "value": "emote",
+              "displayValue": "Emote",
+              "backendValue": "AthenaEmote"
+            },
+            "rarity": {
+              "value": "rare",
+              "displayValue": "Rare",
+              "backendValue": "EFortRarity::Rare"
+            },
+            "images": {
+              "icon": "https://fortnite-api.com/images/cosmetics/br/eid_filler/icon.png",
+              "featured": "https://fortnite-api.com/images/cosmetics/br/eid_filler/featured.png"
+            }
+          }
+        ]
+      },
+      {
+        "regularPrice": 1200,
+        "finalPrice": 1200,
+        "devName": "[VIRTUAL] Renegade Raider",
+        "offerId": "offer-CID_028_Athena_Commando_F",
+        "inDate": "2026-08-22T00:00:00Z",
+        "outDate": "2026-08-30T23:59:59Z",
+        "giftable": true,
+        "refundable": true,
+        "sortPriority": 0,
+        "layout": {
+          "id": "Feat",
+          "name": "Featured",
+          "category": "Featured"
+        },
+        "bundle": null,
+        "brItems": [
+          {
+            "id": "CID_028_Athena_Commando_F",
+            "name": "Renegade Raider",
+            "type": {
+              "value": "outfit",
+              "displayValue": "Outfit",
+              "backendValue": "AthenaOutfit"
+            },
+            "rarity": {
+              "value": "rare",
+              "displayValue": "Rare",
+              "backendValue": "EFortRarity::Rare"
+            },
+            "images": {
+              "icon": "https://fortnite-api.com/images/cosmetics/br/cid_028_athena_commando_f/icon.png",
+              "featured": "https://fortnite-api.com/images/cosmetics/br/cid_028_athena_commando_f/featured.png"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_label": "still there, shop otherwise changed -> SILENCE",
+    "hash": "mock-h2",
+    "date": "2026-08-22T00:00:00Z",
+    "vbuckIcon": "https://fortnite-api.com/images/vbuck.png",
+    "entries": [
+      {
+        "regularPrice": 1200,
+        "finalPrice": 1200,
+        "devName": "[VIRTUAL] Some Other Skin",
+        "offerId": "offer-CID_999_Filler",
+        "inDate": "2026-08-22T00:00:00Z",
+        "outDate": "2026-08-30T23:59:59Z",
+        "giftable": true,
+        "refundable": true,
+        "sortPriority": 0,
+        "layout": {
+          "id": "Feat",
+          "name": "Featured",
+          "category": "Featured"
+        },
+        "bundle": null,
+        "brItems": [
+          {
+            "id": "CID_999_Filler",
+            "name": "Some Other Skin",
+            "type": {
+              "value": "outfit",
+              "displayValue": "Outfit",
+              "backendValue": "AthenaOutfit"
+            },
+            "rarity": {
+              "value": "uncommon",
+              "displayValue": "Uncommon",
+              "backendValue": "EFortRarity::Uncommon"
+            },
+            "images": {
+              "icon": "https://fortnite-api.com/images/cosmetics/br/cid_999_filler/icon.png",
+              "featured": "https://fortnite-api.com/images/cosmetics/br/cid_999_filler/featured.png"
+            }
+          }
+        ]
+      },
+      {
+        "regularPrice": 1200,
+        "finalPrice": 1200,
+        "devName": "[VIRTUAL] Renegade Raider",
+        "offerId": "offer-CID_028_Athena_Commando_F",
+        "inDate": "2026-08-22T00:00:00Z",
+        "outDate": "2026-08-30T23:59:59Z",
+        "giftable": true,
+        "refundable": true,
+        "sortPriority": 0,
+        "layout": {
+          "id": "Feat",
+          "name": "Featured",
+          "category": "Featured"
+        },
+        "bundle": null,
+        "brItems": [
+          {
+            "id": "CID_028_Athena_Commando_F",
+            "name": "Renegade Raider",
+            "type": {
+              "value": "outfit",
+              "displayValue": "Outfit",
+              "backendValue": "AthenaOutfit"
+            },
+            "rarity": {
+              "value": "rare",
+              "displayValue": "Rare",
+              "backendValue": "EFortRarity::Rare"
+            },
+            "images": {
+              "icon": "https://fortnite-api.com/images/cosmetics/br/cid_028_athena_commando_f/icon.png",
+              "featured": "https://fortnite-api.com/images/cosmetics/br/cid_028_athena_commando_f/featured.png"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_label": "Renegade LEAVES -> silence",
+    "hash": "mock-h3",
+    "date": "2026-08-22T00:00:00Z",
+    "vbuckIcon": "https://fortnite-api.com/images/vbuck.png",
+    "entries": [
+      {
+        "regularPrice": 1200,
+        "finalPrice": 1200,
+        "devName": "[VIRTUAL] Some Other Skin",
+        "offerId": "offer-CID_999_Filler",
+        "inDate": "2026-08-22T00:00:00Z",
+        "outDate": "2026-08-30T23:59:59Z",
+        "giftable": true,
+        "refundable": true,
+        "sortPriority": 0,
+        "layout": {
+          "id": "Feat",
+          "name": "Featured",
+          "category": "Featured"
+        },
+        "bundle": null,
+        "brItems": [
+          {
+            "id": "CID_999_Filler",
+            "name": "Some Other Skin",
+            "type": {
+              "value": "outfit",
+              "displayValue": "Outfit",
+              "backendValue": "AthenaOutfit"
+            },
+            "rarity": {
+              "value": "uncommon",
+              "displayValue": "Uncommon",
+              "backendValue": "EFortRarity::Uncommon"
+            },
+            "images": {
+              "icon": "https://fortnite-api.com/images/cosmetics/br/cid_999_filler/icon.png",
+              "featured": "https://fortnite-api.com/images/cosmetics/br/cid_999_filler/featured.png"
+            }
+          }
+        ]
+      },
+      {
+        "regularPrice": 1200,
+        "finalPrice": 1200,
+        "devName": "[VIRTUAL] Some Other Emote",
+        "offerId": "offer-EID_Filler",
+        "inDate": "2026-08-22T00:00:00Z",
+        "outDate": "2026-08-30T23:59:59Z",
+        "giftable": true,
+        "refundable": true,
+        "sortPriority": 0,
+        "layout": {
+          "id": "Feat",
+          "name": "Featured",
+          "category": "Featured"
+        },
+        "bundle": null,
+        "brItems": [
+          {
+            "id": "EID_Filler",
+            "name": "Some Other Emote",
+            "type": {
+              "value": "emote",
+              "displayValue": "Emote",
+              "backendValue": "AthenaEmote"
+            },
+            "rarity": {
+              "value": "rare",
+              "displayValue": "Rare",
+              "backendValue": "EFortRarity::Rare"
+            },
+            "images": {
+              "icon": "https://fortnite-api.com/images/cosmetics/br/eid_filler/icon.png",
+              "featured": "https://fortnite-api.com/images/cosmetics/br/eid_filler/featured.png"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_label": "still gone -> silence",
+    "hash": "mock-h4",
+    "date": "2026-08-22T00:00:00Z",
+    "vbuckIcon": "https://fortnite-api.com/images/vbuck.png",
+    "entries": [
+      {
+        "regularPrice": 1200,
+        "finalPrice": 1200,
+        "devName": "[VIRTUAL] Some Other Emote",
+        "offerId": "offer-EID_Filler",
+        "inDate": "2026-08-22T00:00:00Z",
+        "outDate": "2026-08-30T23:59:59Z",
+        "giftable": true,
+        "refundable": true,
+        "sortPriority": 0,
+        "layout": {
+          "id": "Feat",
+          "name": "Featured",
+          "category": "Featured"
+        },
+        "bundle": null,
+        "brItems": [
+          {
+            "id": "EID_Filler",
+            "name": "Some Other Emote",
+            "type": {
+              "value": "emote",
+              "displayValue": "Emote",
+              "backendValue": "AthenaEmote"
+            },
+            "rarity": {
+              "value": "rare",
+              "displayValue": "Rare",
+              "backendValue": "EFortRarity::Rare"
+            },
+            "images": {
+              "icon": "https://fortnite-api.com/images/cosmetics/br/eid_filler/icon.png",
+              "featured": "https://fortnite-api.com/images/cosmetics/br/eid_filler/featured.png"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_label": "Renegade RETURNS -> expect alert again",
+    "hash": "mock-h5",
+    "date": "2026-08-22T00:00:00Z",
+    "vbuckIcon": "https://fortnite-api.com/images/vbuck.png",
+    "entries": [
+      {
+        "regularPrice": 1200,
+        "finalPrice": 1200,
+        "devName": "[VIRTUAL] Some Other Emote",
+        "offerId": "offer-EID_Filler",
+        "inDate": "2026-08-22T00:00:00Z",
+        "outDate": "2026-08-30T23:59:59Z",
+        "giftable": true,
+        "refundable": true,
+        "sortPriority": 0,
+        "layout": {
+          "id": "Feat",
+          "name": "Featured",
+          "category": "Featured"
+        },
+        "bundle": null,
+        "brItems": [
+          {
+            "id": "EID_Filler",
+            "name": "Some Other Emote",
+            "type": {
+              "value": "emote",
+              "displayValue": "Emote",
+              "backendValue": "AthenaEmote"
+            },
+            "rarity": {
+              "value": "rare",
+              "displayValue": "Rare",
+              "backendValue": "EFortRarity::Rare"
+            },
+            "images": {
+              "icon": "https://fortnite-api.com/images/cosmetics/br/eid_filler/icon.png",
+              "featured": "https://fortnite-api.com/images/cosmetics/br/eid_filler/featured.png"
+            }
+          }
+        ]
+      },
+      {
+        "regularPrice": 1200,
+        "finalPrice": 1200,
+        "devName": "[VIRTUAL] Renegade Raider",
+        "offerId": "offer-CID_028_Athena_Commando_F",
+        "inDate": "2026-08-22T00:00:00Z",
+        "outDate": "2026-08-30T23:59:59Z",
+        "giftable": true,
+        "refundable": true,
+        "sortPriority": 0,
+        "layout": {
+          "id": "Feat",
+          "name": "Featured",
+          "category": "Featured"
+        },
+        "bundle": null,
+        "brItems": [
+          {
+            "id": "CID_028_Athena_Commando_F",
+            "name": "Renegade Raider",
+            "type": {
+              "value": "outfit",
+              "displayValue": "Outfit",
+              "backendValue": "AthenaOutfit"
+            },
+            "rarity": {
+              "value": "rare",
+              "displayValue": "Rare",
+              "backendValue": "EFortRarity::Rare"
+            },
+            "images": {
+              "icon": "https://fortnite-api.com/images/cosmetics/br/cid_028_athena_commando_f/icon.png",
+              "featured": "https://fortnite-api.com/images/cosmetics/br/cid_028_athena_commando_f/featured.png"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "_label": "TWO more appear at once -> expect one combined alert",
+    "hash": "mock-h6",
+    "date": "2026-08-22T00:00:00Z",
+    "vbuckIcon": "https://fortnite-api.com/images/vbuck.png",
+    "entries": [
+      {
+        "regularPrice": 1200,
+        "finalPrice": 1200,
+        "devName": "[VIRTUAL] Some Other Emote",
+        "offerId": "offer-EID_Filler",
+        "inDate": "2026-08-22T00:00:00Z",
+        "outDate": "2026-08-30T23:59:59Z",
+        "giftable": true,
+        "refundable": true,
+        "sortPriority": 0,
+        "layout": {
+          "id": "Feat",
+          "name": "Featured",
+          "category": "Featured"
+        },
+        "bundle": null,
+        "brItems": [
+          {
+            "id": "EID_Filler",
+            "name": "Some Other Emote",
+            "type": {
+              "value": "emote",
+              "displayValue": "Emote",
+              "backendValue": "AthenaEmote"
+            },
+            "rarity": {
+              "value": "rare",
+              "displayValue": "Rare",
+              "backendValue": "EFortRarity::Rare"
+            },
+            "images": {
+              "icon": "https://fortnite-api.com/images/cosmetics/br/eid_filler/icon.png",
+              "featured": "https://fortnite-api.com/images/cosmetics/br/eid_filler/featured.png"
+            }
+          }
+        ]
+      },
+      {
+        "regularPrice": 1200,
+        "finalPrice": 1200,
+        "devName": "[VIRTUAL] Renegade Raider",
+        "offerId": "offer-CID_028_Athena_Commando_F",
+        "inDate": "2026-08-22T00:00:00Z",
+        "outDate": "2026-08-30T23:59:59Z",
+        "giftable": true,
+        "refundable": true,
+        "sortPriority": 0,
+        "layout": {
+          "id": "Feat",
+          "name": "Featured",
+          "category": "Featured"
+        },
+        "bundle": null,
+        "brItems": [
+          {
+            "id": "CID_028_Athena_Commando_F",
+            "name": "Renegade Raider",
+            "type": {
+              "value": "outfit",
+              "displayValue": "Outfit",
+              "backendValue": "AthenaOutfit"
+            },
+            "rarity": {
+              "value": "rare",
+              "displayValue": "Rare",
+              "backendValue": "EFortRarity::Rare"
+            },
+            "images": {
+              "icon": "https://fortnite-api.com/images/cosmetics/br/cid_028_athena_commando_f/icon.png",
+              "featured": "https://fortnite-api.com/images/cosmetics/br/cid_028_athena_commando_f/featured.png"
+            }
+          }
+        ]
+      },
+      {
+        "regularPrice": 1200,
+        "finalPrice": 1200,
+        "devName": "[VIRTUAL] Take The L",
+        "offerId": "offer-EID_TakeTheL",
+        "inDate": "2026-08-22T00:00:00Z",
+        "outDate": "2026-08-30T23:59:59Z",
+        "giftable": true,
+        "refundable": true,
+        "sortPriority": 0,
+        "layout": {
+          "id": "Feat",
+          "name": "Featured",
+          "category": "Featured"
+        },
+        "bundle": null,
+        "brItems": [
+          {
+            "id": "EID_TakeTheL",
+            "name": "Take The L",
+            "type": {
+              "value": "emote",
+              "displayValue": "Emote",
+              "backendValue": "AthenaEmote"
+            },
+            "rarity": {
+              "value": "icon series",
+              "displayValue": "Icon Series",
+              "backendValue": "EFortRarity::Icon Series"
+            },
+            "images": {
+              "icon": "https://fortnite-api.com/images/cosmetics/br/eid_takethel/icon.png",
+              "featured": "https://fortnite-api.com/images/cosmetics/br/eid_takethel/featured.png"
+            }
+          }
+        ]
+      },
+      {
+        "regularPrice": 1200,
+        "finalPrice": 1200,
+        "devName": "[VIRTUAL] Star Wand",
+        "offerId": "offer-Pickaxe_ID_179_StarWand",
+        "inDate": "2026-08-22T00:00:00Z",
+        "outDate": "2026-08-30T23:59:59Z",
+        "giftable": true,
+        "refundable": true,
+        "sortPriority": 0,
+        "layout": {
+          "id": "Feat",
+          "name": "Featured",
+          "category": "Featured"
+        },
+        "bundle": null,
+        "brItems": [
+          {
+            "id": "Pickaxe_ID_179_StarWand",
+            "name": "Star Wand",
+            "type": {
+              "value": "pickaxe",
+              "displayValue": "Pickaxe",
+              "backendValue": "AthenaPickaxe"
+            },
+            "rarity": {
+              "value": "epic",
+              "displayValue": "Epic",
+              "backendValue": "EFortRarity::Epic"
+            },
+            "images": {
+              "icon": "https://fortnite-api.com/images/cosmetics/br/pickaxe_id_179_starwand/icon.png",
+              "featured": "https://fortnite-api.com/images/cosmetics/br/pickaxe_id_179_starwand/featured.png"
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

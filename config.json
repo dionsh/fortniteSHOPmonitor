@@ -1,0 +1,33 @@
+{
+  "_comment": "Timing and behaviour. All times UTC. You should not need to touch this.",
+
+  "polling": {
+    "_comment": "The shop rotates once daily at 00:00 UTC, and the API sits behind a 30-min cache. So we burst around the rotation and idle the rest of the day.",
+    "burst_window_start_utc": "23:57",
+    "burst_window_end_utc": "00:35",
+    "burst_interval_seconds": 10,
+    "idle_interval_seconds": 900,
+    "race_languages": ["en", "de"],
+    "_race_comment": "Each language variant has an independently staggered 30-min cache. Racing 2 of them roughly halves worst-case staleness. Set to [\"en\"] to be maximally light on the API."
+  },
+
+  "http": {
+    "timeout_seconds": 20,
+    "max_retries": 4,
+    "backoff_base_seconds": 2,
+    "backoff_max_seconds": 60,
+    "user_agent": "fortnite-shop-monitor/1.0 (personal watchlist alerter)"
+  },
+
+  "notifications": {
+    "combine_multiple": true,
+    "max_items_per_message": 10,
+    "renotify_cooldown_hours": 1,
+    "_cooldown_comment": "Anti-flap guard. Racing language variants can briefly disagree about the shop, which could otherwise bounce an item absent->present->absent. 1h absorbs that and can never block a real return, since the shop rotates only once every 24h. State loss is already handled by first-run seeding, not by this."
+  },
+
+  "catalog": {
+    "refresh_hours": 24,
+    "fuzzy_match_threshold": 0.87
+  }
+}

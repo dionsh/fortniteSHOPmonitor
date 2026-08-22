@@ -1,0 +1,14 @@
+{
+  "_comment": "Items to watch for. IDs are pinned so a rename by Epic cannot break matching. Find more with: python tools/resolve.py <name>",
+  "items": [
+    { "id": "CID_A_216_Athena_Commando_M_SunrisePalace_BBQY0", "name": "Paul Atreides" },
+    { "id": "CID_A_215_Athena_Commando_F_SunriseCastle_48TIZ", "name": "Chani" },
+    { "id": "Character_StallionAviator", "name": "Polo Prodigy" },
+    { "id": "CID_703_Athena_Commando_M_Cyclone", "name": "Travis Scott" },
+    { "id": "CID_715_Athena_Commando_F_TwinDark", "name": "Echo" },
+    { "id": "CID_704_Athena_Commando_F_LollipopTrickster", "name": "Harley Quinn" },
+    { "id": "CID_530_Athena_Commando_F_BlackMonday_1BV6J", "name": "Catwoman Comic Book Outfit" },
+    { "id": "CID_A_202_Athena_Commando_F_Division", "name": "Kor" },
+    { "id": "CID_170_Athena_Commando_F_Luchador", "name": "Dynamo" }
+  ]
+}

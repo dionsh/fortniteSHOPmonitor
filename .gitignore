@@ -1,0 +1,28 @@
+# Secrets - never commit
+.env
+.env.local
+*.env
+
+# Runtime state & logs
+state/
+logs/
+*.log
+
+# Cached catalog
+cache/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+*.egg-info/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini

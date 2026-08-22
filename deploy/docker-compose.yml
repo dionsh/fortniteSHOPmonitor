@@ -1,0 +1,19 @@
+# docker compose -f deploy/docker-compose.yml up -d
+services:
+  fortnite-monitor:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    container_name: fortnite-shop-monitor
+    restart: unless-stopped
+    env_file:
+      - ../.env
+    volumes:
+      - ../watchlist.json:/app/watchlist.json:ro
+      - ../state:/app/state
+      - ../cache:/app/cache
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
