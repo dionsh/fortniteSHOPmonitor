@@ -37,6 +37,7 @@ RARITY_COLORS = {
 }
 DEFAULT_COLOR = 0xFF4D4D
 STARTUP_COLOR = 0x5865F2
+REMINDER_COLOR = 0xFAA61A   # amber: still available, act before it leaves
 
 MAX_EMBEDS = 10  # Discord hard limit per message
 
@@ -59,6 +60,8 @@ class DiscordNotifier(Notifier):
         color = RARITY_COLORS.get((item.rarity or "").casefold(), DEFAULT_COLOR)
         if kind == "startup":
             color = STARTUP_COLOR
+        elif kind == "reminder":
+            color = REMINDER_COLOR
 
         fields = [
             {"name": "Type", "value": item.type or "Unknown", "inline": True},

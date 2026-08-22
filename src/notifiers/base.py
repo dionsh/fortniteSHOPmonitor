@@ -29,6 +29,10 @@ class Alert:
             return "Fortnite Shop Monitor started"
         if self.kind == "test":
             return "Fortnite Shop Monitor test"
+        if self.kind == "reminder":
+            if self.is_single:
+                return "STILL IN THE ITEM SHOP"
+            return "STILL IN THE ITEM SHOP ({} items)".format(len(self.items))
         if self.is_single:
             return "FORTNITE ITEM SHOP ALERT"
         return "FORTNITE ITEM SHOP ALERT ({} items)".format(len(self.items))
@@ -36,6 +40,14 @@ class Alert:
     def headline(self):
         if self.kind == "startup":
             return "Already in the shop right now:"
+        if self.kind == "reminder":
+            # Deliberately not "is now in the shop" - it appeared on an
+            # earlier day, and saying otherwise would be misleading.
+            if self.is_single:
+                return "**{}** is still available in the Item Shop today.".format(
+                    self.items[0].name)
+            return "{} of your tracked items are still in the Item Shop today.".format(
+                len(self.items))
         if self.is_single:
             return "**{}** is now in the Item Shop!".format(self.items[0].name)
         return "{} of your tracked items are in the Item Shop!".format(len(self.items))

@@ -39,6 +39,13 @@ class TelegramNotifier(Notifier):
 
         if alert.kind == "startup":
             lines.append(esc("Already in the shop right now:"))
+        elif alert.kind == "reminder":
+            if alert.is_single:
+                lines.append("<b>{}</b> is still available in the Item Shop today.".format(
+                    esc(alert.items[0].name)))
+            else:
+                lines.append("{} of your tracked items are still in the Item Shop today.".format(
+                    len(alert.items)))
         elif alert.is_single:
             lines.append("<b>{}</b> is now in the Item Shop!".format(esc(alert.items[0].name)))
         else:

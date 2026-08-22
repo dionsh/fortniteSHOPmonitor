@@ -151,17 +151,42 @@ instruments, Rocket Racing cars and LEGO kits.
 
 ## How duplicate detection works
 
-The system tracks **transitions**, not presence. It remembers the set of
-watched items that were in the shop at the last *successful* poll, and alerts
-only on `absent → present`:
+Two separate questions are tracked, which is what makes the behaviour
+predictable:
+
+1. **"Did it just appear?"** — the `absent → present` transition, using the set
+   of watched items seen at the last *successful* poll. This is what makes a
+   return months later alert again.
+2. **"Have I already told you today?"** — the shop day each item was last
+   alerted for.
+
+With `repeat_daily_while_in_shop` on (the default), you get **one alert per
+shop day** for as long as an item stays in the shop:
 
 ```text
-8:00 PM   Renegade Raider appears      -> was absent, now present   -> ALERT
-9:00 PM   still in the shop            -> was present, still is     -> silent
-next day  still in the shop            -> was present, still is     -> silent
-later     leaves the shop              -> was present, now absent   -> silent
-weeks on  returns                      -> was absent, now present   -> ALERT
+Day 1 00:01  Harley Quinn appears  -> ALERT   (new appearance)
+Day 1 00:15  still there           -> silent  (already alerted for day 1)
+Day 1 12:00  still there           -> silent
+Day 2        still there           -> ALERT   (new shop day)
+Day 3        still there           -> ALERT   (new shop day)
+Day 4        leaves the shop       -> silent
+Months later returns               -> ALERT   (absent -> present again)
 ```
+
+Reminders are worded differently from appearances — *"is still available in
+the Item Shop today"* rather than *"is now in the Item Shop"* — and use an
+amber embed, so a reminder never reads as a fresh drop.
+
+"Day" means the **shop's own date field**, not a rolling 24 hours, so
+reminders land with the 00:00 UTC rotation instead of drifting.
+
+Set `repeat_daily_while_in_shop` to `false` to go back to alerting only once,
+when an item first appears.
+
+**`reminder_at_utc`** controls when the daily reminder may go out. It defaults
+to `"00:00"`, i.e. right at the rotation — which is the middle of the night in
+many timezones. Set it to e.g. `"09:00"` to get the nudge at a civilised hour.
+A brand-new appearance always alerts immediately and ignores this setting.
 
 State lives in `state/state.json` and is written **atomically** (temp file +
 `os.replace`), so a crash or power cut mid-write cannot corrupt it. A corrupt
@@ -174,8 +199,10 @@ Two extra safety nets:
   unreachable, or hands back an empty `entries` list, the app refuses to
   believe it. Otherwise a blip would look like "every tracked item left" and
   fire a false alert storm the moment it recovered.
-- **A cooldown** (`renotify_cooldown_hours`, default 12) blocks a repeat alert
-  for the same item even if state is lost entirely.
+- **An anti-flap cooldown** (`renotify_cooldown_hours`, default 1). Racing
+  language variants can briefly disagree about the shop, which would otherwise
+  bounce an item `absent → present → absent` within seconds. One hour absorbs
+  that and is far too short to ever block a daily reminder or a real return.
 
 **First run** establishes a baseline rather than alerting on everything already
 in the shop. If watched items are present, you get one clearly-labelled
@@ -237,7 +264,7 @@ fortnite_shop/
 │   ├── shop_now.py           list the current shop
 │   └── telegram_chat_id.py   Telegram setup helper
 │
-├── tests/                    26 behavioural tests, no network needed
+├── tests/                    33 behavioural tests, no network needed
 └── deploy/                   systemd, Docker, Windows task, GitHub Actions
 ```
 
@@ -322,12 +349,16 @@ the disk.
 cd tests && python -m unittest test_monitor
 ```
 
-26 tests, entirely offline via a mock API driven by JSON fixtures. They cover
+33 tests, entirely offline via a mock API driven by JSON fixtures. They cover
 exactly what you asked for:
 
 - a newly appeared tracked item triggers a notification
 - an item that stays in the shop does **not** trigger another
 - an item that leaves and later returns triggers a **new** notification
+- an item still in the shop alerts once per shop day (and only once per day)
+- turning daily reminders off reverts to alert-once-on-appearance
+- `reminder_at_utc` delays a reminder but never a new appearance
+- upgrading from v1 state does not spam reminders for items already present
 - multiple items appearing together are handled (batched and separate modes)
 - staggered arrivals only alert for the newly added item
 - API errors don't crash the app and don't corrupt state

@@ -35,6 +35,8 @@ DEFAULTS: dict[str, Any] = {
         "combine_multiple": True,
         "max_items_per_message": 10,
         "renotify_cooldown_hours": 1,
+        "repeat_daily_while_in_shop": True,
+        "reminder_at_utc": "00:00",
     },
     "catalog": {"refresh_hours": 24, "fuzzy_match_threshold": 0.87},
 }

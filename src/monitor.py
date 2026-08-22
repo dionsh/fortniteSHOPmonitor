@@ -17,7 +17,7 @@ from .api import ApiError, FortniteAPI, MockAPI
 from .matcher import flatten_shop, match_watchlist
 from .notifiers import Alert, Dispatcher
 from .scheduler import MODE_BURST, Scheduler
-from .state import DeadLetterQueue, StateStore, parse_iso, utcnow
+from .state import DeadLetterQueue, StateStore, parse_iso, shop_day, utcnow
 from .watchlist import CatalogResolver, load_watchlist
 
 log = logging.getLogger(__name__)
@@ -119,24 +119,43 @@ class Monitor:
                      len(shop.entries), shop.age_seconds)
             self.scheduler.mark_change_detected()
 
+        day = shop_day(shop)
+
         # First ever run: establish a baseline instead of alerting on
         # everything already sitting in the shop.
         if not self.state.seeded:
-            return self._handle_first_run(matched, current_keys, shop)
+            return self._handle_first_run(matched, current_keys, shop, day)
 
-        newly = self.state.diff(current_keys)
-        if not newly:
-            self.state.commit(current_keys, shop)
+        appeared, reminders = self.state.classify(current_keys, day)
+
+        # A daily reminder can be held back until a civilised hour; a genuine
+        # new appearance always goes out immediately.
+        if reminders and not self.state.reminder_window_open(day):
+            reminders = set()
+
+        if not appeared and not reminders:
+            self.state.commit(current_keys, shop, day=day)
             return True, []
 
-        items = [matched[k][0] for k in sorted(newly)]
-        log.info("NEW: %s", ", ".join(i.name for i in items))
+        delivered_keys = []
+        reported = []
 
-        delivered_keys = self._notify(items, kind="new")
-        self.state.commit(current_keys, shop, notified_keys=delivered_keys)
-        return True, items
+        if appeared:
+            items = [matched[k][0] for k in sorted(appeared)]
+            log.info("NEW: %s", ", ".join(i.name for i in items))
+            delivered_keys += self._notify(items, kind="new")
+            reported += items
 
-    def _handle_first_run(self, matched, current_keys, shop):
+        if reminders:
+            items = [matched[k][0] for k in sorted(reminders)]
+            log.info("STILL IN SHOP (day %s): %s", day, ", ".join(i.name for i in items))
+            delivered_keys += self._notify(items, kind="reminder")
+            reported += items
+
+        self.state.commit(current_keys, shop, notified_keys=delivered_keys, day=day)
+        return True, reported
+
+    def _handle_first_run(self, matched, current_keys, shop, day):
         """Seed state on first run, reporting what is already available."""
         items = [matched[k][0] for k in sorted(current_keys)]
 
@@ -147,7 +166,7 @@ class Monitor:
             log.info("First run - none of your tracked items are in the shop right now.")
             delivered = []
 
-        self.state.commit(current_keys, shop, notified_keys=delivered)
+        self.state.commit(current_keys, shop, notified_keys=delivered, day=day)
         return True, []
 
     def _notify(self, items, kind):

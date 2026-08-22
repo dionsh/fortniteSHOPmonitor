@@ -108,6 +108,134 @@ class TestDuplicateDetection(unittest.TestCase):
             config.cleanup()
 
 
+class TestDailyReminder(unittest.TestCase):
+    """repeat_daily_while_in_shop: one alert per shop day while present."""
+
+    @staticmethod
+    def _days_ago(n):
+        """Shop days must be in the past, or reminder_at_utc rightly holds
+        them back - the reminder for a future day is not due yet."""
+        from datetime import timedelta
+        from src.state import utcnow
+        return (utcnow() - timedelta(days=n)).strftime("%Y-%m-%d")
+
+    def _scenario(self):
+        # Same item present across three consecutive shop days, polled
+        # several times each day, exactly like the real burst window.
+        steps = [make_shop([FILLER], "h0", date=self._days_ago(4) + "T00:00:00Z")]
+        for offset in (3, 2, 1):
+            day = self._days_ago(offset)
+            for _ in range(4):
+                steps.append(make_shop([FILLER, RENEGADE], "h-" + day,
+                                       date=day + "T00:00:00Z"))
+        steps.append(make_shop([FILLER], "h9", date=self._days_ago(0) + "T00:00:00Z"))
+        return steps
+
+    def test_alerts_once_per_shop_day(self):
+        config, api, rec, mon = build(
+            ["Renegade Raider"], self._scenario(),
+            overrides={"notifications": {"repeat_daily_while_in_shop": True,
+                                         "renotify_cooldown_hours": 0}})
+        try:
+            kinds = []
+            for _ in range(len(self._scenario())):
+                before = len(rec.alerts)
+                mon.poll_once()
+                if len(rec.alerts) > before:
+                    kinds.append(rec.alerts[-1].kind)
+                api.advance()
+
+            self.assertEqual(len(kinds), 3,
+                             "3 shop days present = 3 alerts, not one per poll")
+            self.assertEqual(kinds, ["new", "reminder", "reminder"],
+                             "day 1 is a new appearance; days 2-3 are reminders")
+        finally:
+            config.cleanup()
+
+    def test_disabled_reverts_to_alert_once(self):
+        config, api, rec, mon = build(
+            ["Renegade Raider"], self._scenario(),
+            overrides={"notifications": {"repeat_daily_while_in_shop": False,
+                                         "renotify_cooldown_hours": 0}})
+        try:
+            for _ in range(len(self._scenario())):
+                mon.poll_once()
+                api.advance()
+            self.assertEqual(len(rec.alerts), 1,
+                             "with reminders off, only the appearance alerts")
+            self.assertEqual(rec.alerts[0].kind, "new")
+        finally:
+            config.cleanup()
+
+    def test_leaving_and_returning_still_counts_as_new(self):
+        steps = [
+            make_shop([FILLER], "h0", date="2026-08-21T00:00:00Z"),
+            make_shop([FILLER, RENEGADE], "h1", date="2026-08-22T00:00:00Z"),
+            make_shop([FILLER], "h2", date="2026-08-23T00:00:00Z"),
+            make_shop([FILLER, RENEGADE], "h3", date="2026-09-30T00:00:00Z"),
+        ]
+        config, api, rec, mon = build(
+            ["Renegade Raider"], steps,
+            overrides={"notifications": {"repeat_daily_while_in_shop": True,
+                                         "renotify_cooldown_hours": 0}})
+        try:
+            for _ in range(len(steps)):
+                mon.poll_once()
+                api.advance()
+            self.assertEqual([a.kind for a in rec.alerts], ["new", "new"],
+                             "a return after leaving is a new appearance, not a reminder")
+        finally:
+            config.cleanup()
+
+    def test_reminder_at_utc_holds_reminder_but_not_new_appearance(self):
+        """A brand-new appearance must never be delayed by the reminder hour."""
+        from src.state import StateStore
+        from datetime import datetime, timezone
+
+        config = TempConfig(overrides={"notifications": {"reminder_at_utc": "09:00"}})
+        try:
+            store = StateStore(config)
+            day = "2026-08-22"
+            before = datetime(2026, 8, 22, 3, 0, tzinfo=timezone.utc)
+            after = datetime(2026, 8, 22, 9, 30, tzinfo=timezone.utc)
+            self.assertFalse(store.reminder_window_open(day, before))
+            self.assertTrue(store.reminder_window_open(day, after))
+        finally:
+            config.cleanup()
+
+    def test_migration_from_v1_state_does_not_spam(self):
+        """Upgrading must not fire reminders for everything already present."""
+        import json as _json
+        from src.state import StateStore
+
+        config = TempConfig()
+        try:
+            config.state_file.write_text(_json.dumps({
+                "version": 1,
+                "present_keys": ["CID_028_Athena_Commando_F"],
+                "last_notified": {},
+                "last_shop_hash": "h",
+                "last_shop_date": "2026-08-22T00:00:00Z",
+                "last_successful_poll": "2026-08-22T00:05:00Z",
+                "seeded": True,
+            }), encoding="utf-8")
+
+            store = StateStore(config)
+            self.assertEqual(store.last_alert_date,
+                             {"CID_028_Athena_Commando_F": "2026-08-22"},
+                             "v1 state should backfill today's alert date")
+
+            appeared, reminders = store.classify({"CID_028_Athena_Commando_F"}, "2026-08-22")
+            self.assertEqual(appeared, set())
+            self.assertEqual(reminders, set(), "no alert on the day we migrated")
+
+            # ...but the next shop day still reminds normally.
+            _, reminders = store.classify({"CID_028_Athena_Commando_F"}, "2026-08-23")
+            self.assertEqual(reminders, {"CID_028_Athena_Commando_F"})
+        finally:
+            config.cleanup()
+
+
 class TestMultipleItems(unittest.TestCase):
     def test_several_items_appear_together(self):
         scenario = [
@@ -429,9 +557,11 @@ class TestCooldown(unittest.TestCase):
             mon.poll_once()
             self.assertEqual(len(rec.alerts), 1)
 
-            # Wipe presence memory but keep last_notified, as a state
-            # rollback would. The cooldown must still suppress a repeat.
+            # Wipe presence memory AND the per-day record, as a state
+            # rollback would, leaving only last_notified. The cooldown is
+            # then the sole thing standing between us and a repeat alert.
             mon.state.present_keys = set()
+            mon.state.last_alert_date = {}
             mon.poll_once()
             self.assertEqual(len(rec.alerts), 1, "cooldown must suppress the repeat")
         finally:

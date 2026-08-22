@@ -23,6 +23,12 @@
     "combine_multiple": true,
     "max_items_per_message": 10,
     "renotify_cooldown_hours": 1,
+
+    "repeat_daily_while_in_shop": true,
+    "_repeat_comment": "true = remind you once per shop day for as long as an item stays in the shop. false = alert only once, when it first appears.",
+
+    "reminder_at_utc": "00:00",
+    "_reminder_at_comment": "When the DAILY REMINDER may go out, UTC. The shop rotates at 00:00 UTC, which is the middle of the night in many timezones - set e.g. '09:00' to get the daily nudge at a sensible hour instead. A brand-new appearance always alerts immediately and ignores this.",
     "_cooldown_comment": "Anti-flap guard. Racing language variants can briefly disagree about the shop, which could otherwise bounce an item absent->present->absent. 1h absorbs that and can never block a real return, since the shop rotates only once every 24h. State loss is already handled by first-run seeding, not by this."
   },
 
