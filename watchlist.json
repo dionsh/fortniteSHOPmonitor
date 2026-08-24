@@ -9,6 +9,11 @@
     { "id": "CID_704_Athena_Commando_F_LollipopTrickster", "name": "Harley Quinn" },
     { "id": "CID_530_Athena_Commando_F_BlackMonday_1BV6J", "name": "Catwoman Comic Book Outfit" },
     { "id": "CID_A_202_Athena_Commando_F_Division", "name": "Kor" },
-    { "id": "CID_170_Athena_Commando_F_Luchador", "name": "Dynamo" }
+    { "id": "CID_170_Athena_Commando_F_Luchador", "name": "Dynamo" },
+    { "id": "CID_A_205_Athena_Commando_F_TextileRam_GMRJ0", "name": "Unchained Ramirez" },
+    { "id": "Pickaxe_ID_138_Gnome", "name": "Cold Snap" },
+    { "id": "Pickaxe_ID_599_CavernFemale", "name": "Catwoman's Grappling Claw" },
+    { "id": "Pickaxe_ID_508_HistorianMale_6BQSW", "name": "Leviathan Axe" },
+    { "id": "Pickaxe_ID_846_StaminaMale", "name": "Power Pole (Nyoibo)" }
   ]
 }
