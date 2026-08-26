@@ -92,6 +92,13 @@ jobs:
           key: fnshop-catalog-${{ github.run_id }}
           restore-keys: fnshop-catalog-
 
+      # Which watched items were already in the shop before this run, so the
+      # commit message below can tell a fresh drop from one that was already
+      # sitting there yesterday.
+      - name: Snapshot state before the run
+        run: |
+          cp state/state.json /tmp/state-before.json 2>/dev/null || true
+
       - name: Watch across the shop rotation
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
@@ -134,6 +141,16 @@ jobs:
           key: fnshop-catalog-${{ github.run_id }}
 
       # state/ is gitignored for local development, so force-add it here.
+      #
+      # The commit message names any watched item that appeared, so `git log`
+      # doubles as a searchable drop history:
+      #
+      #   alert: Son Goku in the shop [skip ci]        <- appeared this run
+      #   chore: Son Goku still in the shop [skip ci]  <- was already there
+      #   chore: update shop state [skip ci]           <- nothing watched in shop
+      #
+      # This runs AFTER the polling loop has exited, so it cannot delay or
+      # block a notification - the Discord alert already went out above.
       - name: Persist state
         if: always()
         run: |
@@ -147,8 +164,74 @@ jobs:
             exit 0
           fi
 
-          git commit -m "chore: update shop state [skip ci]"
+          MSG=$(python - <<'PY'
+          import json, pathlib, sys
+
+          # Reuse the app's own name normalisation so the keys line up exactly.
+          sys.path.insert(0, ".")
+          try:
+              from src.matcher import normalize_name
+          except Exception:
+              def normalize_name(name):
+                  return (name or "").strip().casefold()
+
+          def load(path):
+              try:
+                  return json.loads(pathlib.Path(path).read_text(encoding="utf-8"))
+              except Exception:
+                  return {}
+
+          before = load("/tmp/state-before.json")
+          after = load("state/state.json")
+
+          # Map internal item keys back to the names as written in watchlist.json.
+          labels = {}
+          for raw in load("watchlist.json").get("items", []):
+              if isinstance(raw, str):
+                  labels["name:" + normalize_name(raw)] = raw.strip()
+              elif isinstance(raw, dict):
+                  shown = (raw.get("name") or raw.get("id") or "").strip()
+                  if raw.get("id"):
+                      labels[raw["id"].casefold()] = shown
+                  if raw.get("name"):
+                      labels["name:" + normalize_name(raw["name"])] = shown
+
+          def label(key):
+              return labels.get(key.casefold()) or key.replace("name:", "", 1)
+
+          prev = set(before.get("present_keys") or [])
+          now = set(after.get("present_keys") or [])
+
+          # With no baseline every item would look new, so don't claim a drop.
+          appeared = sorted(now - prev) if before.get("seeded") else []
+
+          if appeared:
+              prefix, keys, verb = "alert", appeared, "in the shop"
+          elif now:
+              prefix, keys, verb = "chore", sorted(now), "still in the shop"
+          else:
+              prefix = None
+
+          if prefix is None:
+              print("chore: update shop state [skip ci]")
+          else:
+              # Order by the name you would recognise, not by internal item ID,
+              # so the truncated "+N more" keeps a predictable three.
+              names = sorted(label(k) for k in keys)
+              shown = names[:3]
+              extra = len(names) - len(shown)
+              listed = ", ".join(shown) + (" +%d more" % extra if extra else "")
+              print("%s: %s %s [skip ci]" % (prefix, listed, verb))
+          PY
+          ) || true   # -e would otherwise abort before the fallback below
+
+          # A broken message generator must never stop state from persisting.
+          if [ -z "$MSG" ]; then
+            MSG="chore: update shop state [skip ci]"
+          fi
+
+          git commit -m "$MSG"
           # Another run could have pushed meanwhile; rebase rather than fail.
           git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || true
           git push origin "HEAD:${GITHUB_REF_NAME}"
-          echo "State committed and pushed." >> "$GITHUB_STEP_SUMMARY"
+          echo "State committed and pushed as: \`$MSG\`" >> "$GITHUB_STEP_SUMMARY"

@@ -418,8 +418,27 @@ instances — this app's daily activity is enough to avoid that.*
 Copy `deploy/github-actions/monitor.yml` to `.github/workflows/`, add
 `DISCORD_WEBHOOK_URL` as a repository secret. It wakes at 23:50 UTC and polls
 across the rotation for ~45 min — about 1,350 min/month, inside the 2,000 free
-minutes for private repos and unlimited on public ones. State persists between
-runs via `actions/cache`.
+minutes for private repos and unlimited on public ones. State is committed
+back to the repo between runs — more durable than `actions/cache`, which can
+be evicted, and the daily commit also stops GitHub auto-disabling a scheduled
+workflow after 60 days of inactivity. Only the 1.3 MB cosmetics catalog uses
+`actions/cache`, since it is regenerable and would bloat the repo.
+
+That state commit is **named after whatever showed up**, so `git log` doubles
+as a searchable drop history:
+
+```text
+alert: Son Goku in the shop [skip ci]        <- appeared this run
+chore: Son Goku still in the shop [skip ci]  <- was already there
+chore: update shop state [skip ci]           <- nothing watched in the shop
+```
+
+Only `alert:` means something new arrived. Grep your history with
+`git log --grep '^alert:'`.
+
+The message is written **after** the polling loop has exited, so it can never
+delay or block a notification — the Discord alert went out up to 45 minutes
+earlier. The commit is a record, not the alert.
 
 **Caveat:** GitHub's cron is best-effort and can start several minutes late
 under load. The wide polling window absorbs that, but an always-on host is
