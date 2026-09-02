@@ -1,12 +1,17 @@
 {
   "version": 2,
-  "present_keys": [],
+  "present_keys": [
+    "CID_170_Athena_Commando_F_Luchador"
+  ],
   "last_notified": {
-    "Character_BoldDormRise": "2026-08-22T18:14:24.742072Z"
+    "Character_BoldDormRise": "2026-08-22T18:14:24.742072Z",
+    "CID_170_Athena_Commando_F_Luchador": "2026-09-02T01:28:18.951762Z"
   },
-  "last_alert_date": {},
-  "last_shop_hash": "bd53f130a5cb1564",
-  "last_shop_date": "2026-09-01T00:00:00Z",
-  "last_successful_poll": "2026-09-01T02:49:43.911486Z",
+  "last_alert_date": {
+    "CID_170_Athena_Commando_F_Luchador": "2026-09-02"
+  },
+  "last_shop_hash": "b1609b6784891f20",
+  "last_shop_date": "2026-09-02T00:00:00Z",
+  "last_successful_poll": "2026-09-02T02:13:02.442922Z",
   "seeded": true
 }
