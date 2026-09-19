@@ -6,13 +6,13 @@
   "last_notified": {
     "Character_BoldDormRise": "2026-08-22T18:14:24.742072Z",
     "CID_170_Athena_Commando_F_Luchador": "2026-09-02T01:28:18.951762Z",
-    "CID_530_Athena_Commando_F_BlackMonday_1BV6J": "2026-09-18T01:36:36.243796Z"
+    "CID_530_Athena_Commando_F_BlackMonday_1BV6J": "2026-09-19T01:41:22.298017Z"
   },
   "last_alert_date": {
-    "CID_530_Athena_Commando_F_BlackMonday_1BV6J": "2026-09-18"
+    "CID_530_Athena_Commando_F_BlackMonday_1BV6J": "2026-09-19"
   },
-  "last_shop_hash": "6aa0056f46b21953",
-  "last_shop_date": "2026-09-18T00:00:00Z",
-  "last_successful_poll": "2026-09-18T02:21:18.864685Z",
+  "last_shop_hash": "bea5083e43d1b02b",
+  "last_shop_date": "2026-09-19T00:00:00Z",
+  "last_successful_poll": "2026-09-19T02:26:10.112211Z",
   "seeded": true
 }
