@@ -1,21 +1,19 @@
 {
   "version": 2,
   "present_keys": [
-    "CID_530_Athena_Commando_F_BlackMonday_1BV6J",
-    "CID_715_Athena_Commando_F_TwinDark"
+    "CID_530_Athena_Commando_F_BlackMonday_1BV6J"
   ],
   "last_notified": {
     "Character_BoldDormRise": "2026-08-22T18:14:24.742072Z",
     "CID_170_Athena_Commando_F_Luchador": "2026-09-02T01:28:18.951762Z",
-    "CID_530_Athena_Commando_F_BlackMonday_1BV6J": "2026-09-20T01:43:16.453679Z",
+    "CID_530_Athena_Commando_F_BlackMonday_1BV6J": "2026-09-21T01:44:37.869304Z",
     "CID_715_Athena_Commando_F_TwinDark": "2026-09-20T01:43:16.453679Z"
   },
   "last_alert_date": {
-    "CID_530_Athena_Commando_F_BlackMonday_1BV6J": "2026-09-20",
-    "CID_715_Athena_Commando_F_TwinDark": "2026-09-20"
+    "CID_530_Athena_Commando_F_BlackMonday_1BV6J": "2026-09-21"
   },
-  "last_shop_hash": "e385ed06aa95fe1d",
-  "last_shop_date": "2026-09-20T00:00:00Z",
-  "last_successful_poll": "2026-09-20T02:28:07.438749Z",
+  "last_shop_hash": "2ae4166644145c64",
+  "last_shop_date": "2026-09-21T00:00:00Z",
+  "last_successful_poll": "2026-09-21T02:29:27.752620Z",
   "seeded": true
 }
