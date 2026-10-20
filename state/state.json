@@ -8,13 +8,13 @@
     "CID_170_Athena_Commando_F_Luchador": "2026-09-02T01:28:18.951762Z",
     "CID_530_Athena_Commando_F_BlackMonday_1BV6J": "2026-09-22T01:55:54.081848Z",
     "CID_715_Athena_Commando_F_TwinDark": "2026-09-20T01:43:16.453679Z",
-    "CID_A_205_Athena_Commando_F_TextileRam_GMRJ0": "2026-10-19T01:50:58.020924Z"
+    "CID_A_205_Athena_Commando_F_TextileRam_GMRJ0": "2026-10-20T02:09:50.579705Z"
   },
   "last_alert_date": {
-    "CID_A_205_Athena_Commando_F_TextileRam_GMRJ0": "2026-10-19"
+    "CID_A_205_Athena_Commando_F_TextileRam_GMRJ0": "2026-10-20"
   },
-  "last_shop_hash": "0fe3891b2ddc9242",
-  "last_shop_date": "2026-10-19T00:00:00Z",
-  "last_successful_poll": "2026-10-19T02:35:53.346949Z",
+  "last_shop_hash": "7358e91afdd08fb2",
+  "last_shop_date": "2026-10-20T00:00:00Z",
+  "last_successful_poll": "2026-10-20T02:54:42.517027Z",
   "seeded": true
 }
