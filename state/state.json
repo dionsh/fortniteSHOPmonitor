@@ -1,8 +1,6 @@
 {
   "version": 2,
-  "present_keys": [
-    "CID_A_205_Athena_Commando_F_TextileRam_GMRJ0"
-  ],
+  "present_keys": [],
   "last_notified": {
     "Character_BoldDormRise": "2026-08-22T18:14:24.742072Z",
     "CID_170_Athena_Commando_F_Luchador": "2026-09-02T01:28:18.951762Z",
@@ -10,11 +8,9 @@
     "CID_715_Athena_Commando_F_TwinDark": "2026-09-20T01:43:16.453679Z",
     "CID_A_205_Athena_Commando_F_TextileRam_GMRJ0": "2026-10-21T02:04:25.245223Z"
   },
-  "last_alert_date": {
-    "CID_A_205_Athena_Commando_F_TextileRam_GMRJ0": "2026-10-21"
-  },
-  "last_shop_hash": "cf87965e5e877bec",
-  "last_shop_date": "2026-10-21T00:00:00Z",
-  "last_successful_poll": "2026-10-21T02:49:11.667664Z",
+  "last_alert_date": {},
+  "last_shop_hash": "95b3f0b42a63abf1",
+  "last_shop_date": "2026-10-22T00:00:00Z",
+  "last_successful_poll": "2026-10-22T02:43:06.164548Z",
   "seeded": true
 }
