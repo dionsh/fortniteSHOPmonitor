@@ -1,10 +1,6 @@
 {
   "version": 2,
-  "present_keys": [
-    "CID_704_Athena_Commando_F_LollipopTrickster",
-    "CID_A_094_Athena_Commando_F_Cavern_33LMC",
-    "Pickaxe_ID_599_CavernFemale"
-  ],
+  "present_keys": [],
   "last_notified": {
     "Character_BoldDormRise": "2026-08-22T18:14:24.742072Z",
     "CID_170_Athena_Commando_F_Luchador": "2026-09-02T01:28:18.951762Z",
@@ -15,13 +11,9 @@
     "CID_A_094_Athena_Commando_F_Cavern_33LMC": "2026-11-05T03:46:31.604968Z",
     "Pickaxe_ID_599_CavernFemale": "2026-11-05T03:46:31.604968Z"
   },
-  "last_alert_date": {
-    "CID_704_Athena_Commando_F_LollipopTrickster": "2026-11-05",
-    "CID_A_094_Athena_Commando_F_Cavern_33LMC": "2026-11-05",
-    "Pickaxe_ID_599_CavernFemale": "2026-11-05"
-  },
-  "last_shop_hash": "8da148e9f831e001",
-  "last_shop_date": "2026-11-05T00:00:00Z",
-  "last_successful_poll": "2026-11-05T04:31:22.411630Z",
+  "last_alert_date": {},
+  "last_shop_hash": "8ffe8f39d4fba5f2",
+  "last_shop_date": "2026-11-06T00:00:00Z",
+  "last_successful_poll": "2026-11-06T04:27:57.788607Z",
   "seeded": true
 }
